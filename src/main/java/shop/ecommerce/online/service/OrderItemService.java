@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface OrderItemService {
 
-    List<OrderItemDto> findOrderItemsByOrder(OrderItemDto orderItemDto);
+    List<OrderItemDto> findOrderItemsByOrder(OrderDto orderDto);
 
     OrderItemDto createOrderItem(OrderItemDto orderItemDto);
 

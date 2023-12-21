@@ -12,6 +12,7 @@ import shop.ecommerce.online.repository.CustomerRepository;
 import shop.ecommerce.online.service.CustomerService;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
@@ -47,12 +48,16 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDto updateCustomer(Long customerId, CustomerDto updateCustomer) {
+        Customer existingCustomer = repository.findById(customerId)
+                .orElseThrow(() -> new NoSuchElementException("Customer not found with id: " + customerId));
 
-        return null;
+        existingCustomer.setName(updateCustomer.getName());
+        Customer saveCustomer = repository.save(existingCustomer);
+        return CustomerMapper.toDto(saveCustomer);
     }
 
     @Override
     public void deleteCustomer(Long customerId) {
-
+        repository.deleteById(customerId);
     }
 }

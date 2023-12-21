@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface AddressRepository extends JpaRepository<Address, Long> {
 
-    List<AddressDto> findByCustomer(Customer customer);
+    List<Address> findByCustomer(Customer customer);
 }
